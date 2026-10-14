@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='en' xmlns:th='http://www.thymeleaf.org'>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta property='og:type' content='website'>
+    <meta property='og:site_name' content='안성상회'>
+    <meta property='og:url' content='https://share.anseongapp.com'>
+    <meta property='og:title' th:content='${image.title}'>
+    <meta property='og:image' th:content='${image.thumbnail}'>
+    <meta property='og:description' th:content='${image.description}'>
+  </head>
+  <body>
+    <script th:inline='javascript'>
+      window.location.replace(`https://anseongapp.com/share?id=[[${image.id.value()}]]`)
+    </script>
+  </body>
+</html>

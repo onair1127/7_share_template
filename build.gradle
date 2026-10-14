@@ -1,0 +1,109 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+     id 'org.graalvm.buildtools.native' version '0.10.6'
+     id 'org.hibernate.orm' version '6.6.18.Final'
+}
+
+group = 'com.anseong'
+version = '1.0.0'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+     options.compilerArgs.add("-parameters")
+}
+
+hibernate {
+     enhancement {
+          enableDirtyTracking = true
+          enableLazyInitialization = true
+          enableExtendedEnhancement = false
+          enableAssociationManagement = true
+     }
+}
+
+graalvmNative {
+     testSupport = false
+     agent {
+          trackReflectionMetadata = true
+     }
+
+     metadataRepository {
+          enabled = true
+     }
+
+     binaries {
+          all {
+               resources.autodetect()
+          }
+          main {
+               imageName = 'share_template'
+               mainClass = 'com.anseong.share.TemplateApplication'
+               requiredVersion = '23.0'
+
+               buildArgs.add('-H:-CheckToolchain')
+               buildArgs.add('-H:+AllowIncompleteClasspath')
+               buildArgs.add('-H:+ReportUnsupportedElementsAtRuntime')
+               buildArgs.add('-H:+RunReachabilityHandlersConcurrently')
+               buildArgs.add('-H:IncludeResources=".*.xml|.*.conf"')
+               buildArgs.add('--initialize-at-build-time=ch.qos.logback')
+               buildArgs.add('--initialize-at-build-time=org.bouncycastle')
+               buildArgs.add('--initialize-at-build-time=org.slf4j')
+               buildArgs.add('--initialize-at-build-time=org.joda.time')
+               buildArgs.add('--initialize-at-build-time=org.apache.commons')
+               buildArgs.add('--initialize-at-build-time=com.fasterxml.jackson')
+               buildArgs.add('--enable-http')
+               buildArgs.add('--enable-https')
+               buildArgs.add('--verbose')
+          }
+     }
+}
+
+bootBuildImage {
+     environment = [
+          // BPE_APPEND_JAVA_TOOL_OPTIONS
+          "BP_NATIVE_IMAGE" : "true",
+          "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : "-H:-CheckToolchain -H:+AllowIncompleteClasspath -H:+ReportUnsupportedElementsAtRuntime --initialize-at-build-time=ch.qos.logback --initialize-at-build-time=org.slf4j --initialize-at-build-time=org.apache.commons --initialize-at-build-time=org.bouncycastle --enable-http --enable-https --verbose"
+     ]
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+     
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+     implementation 'com.amazonaws.serverless:aws-serverless-java-container-springboot3:2.1.4'
+     implementation 'com.amazonaws:aws-lambda-java-core:1.3.0'
+     implementation 'com.amazonaws:aws-lambda-java-events:3.15.0'
+	runtimeOnly 'org.postgresql:postgresql'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+
+// task buildZip(type: Zip) {
+//      from compileJava
+//      from processResources
+//      into('lib') {
+//           from configurations.compileClasspath
+//           from configurations.runtimeClasspath
+//      }
+// }
+
+// build.dependsOn buildZip

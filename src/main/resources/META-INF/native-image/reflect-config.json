@@ -1,0 +1,50 @@
+[
+  {
+    "name": "com.anseong.share.domain.common.model.AbstractBaseId",
+    "allDeclaredFields": true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors": true,
+    "queryAllDeclaredConstructors" : true,
+    "queryAllPublicConstructors" : true,
+    "queryAllDeclaredMethods" : true,
+    "queryAllPublicMethods" : true,
+    "allDeclaredClasses" : true,
+    "allPublicClasses" : true
+  },
+  {
+    "name": "com.anseong.share.domain.common.model.AbstractBaseEntity",
+    "allDeclaredFields": true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors": true,
+    "queryAllDeclaredConstructors" : true,
+    "queryAllPublicConstructors" : true,
+    "queryAllDeclaredMethods" : true,
+    "queryAllPublicMethods" : true,
+    "allDeclaredClasses" : true,
+    "allPublicClasses" : true
+  },
+  {
+    "name": "com.anseong.share.web.payload.EventPayload",
+    "allDeclaredFields": true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors": true,
+    "queryAllDeclaredConstructors" : true,
+    "queryAllPublicConstructors" : true,
+    "queryAllDeclaredMethods" : true,
+    "queryAllPublicMethods" : true,
+    "allDeclaredClasses" : true,
+    "allPublicClasses" : true
+  },
+  {
+    "name": "com.amazonaws.serverless.proxy.model.AlbContext",
+    "allDeclaredFields": true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors": true,
+    "queryAllDeclaredConstructors" : true,
+    "queryAllPublicConstructors" : true,
+    "queryAllDeclaredMethods" : true,
+    "queryAllPublicMethods" : true,
+    "allDeclaredClasses" : true,
+    "allPublicClasses" : true
+  }
+]

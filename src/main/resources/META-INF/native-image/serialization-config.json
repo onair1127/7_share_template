@@ -1,0 +1,30 @@
+[
+  {
+    "name":"java.lang.Number",
+    "customTargetConstructorClass":"java.lang.Object"
+  },
+  {
+    "name":"java.lang.Long",
+    "customTargetConstructorClass":"java.lang.Object"
+  },
+  {
+    "name":"java.time.LocalDateTime",
+    "customTargetConstructorClass":"java.lang.Object"
+  },
+  {
+    "name":"com.anseong.share.domain.model.image.ShareTemplateImage",
+    "customTargetConstructorClass":"java.lang.Object"
+  },
+  {
+    "name":"com.anseong.share.domain.model.store.ShareTemplateStore",
+    "customTargetConstructorClass":"java.lang.Object"
+  },
+  {
+    "name":"org.hibernate.collection.spi.AbstractPersistentCollection",
+    "customTargetConstructorClass":"java.lang.Object"
+  },
+  {
+    "name":"org.hibernate.collection.spi.PersistentSet",
+    "customTargetConstructorClass":"java.lang.Object"
+  }
+]
